@@ -73,7 +73,11 @@ class I2Cdev {
         static bool writeBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *data);
         static bool writeWords(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint16_t *data);
 
-        static uint16_t readTimeout;
+	static void write(uint8_t slaveAddress, uint8_t* txdataBuf, size_t number_of_bytes);
+	static void read(uint8_t slaveAddress, uint8_t* rxdataBuf, size_t number_of_bytes);
+
+        static uint16_t readTimeout;	
+
 };
 
 #endif /* _I2CDEV_H_ */

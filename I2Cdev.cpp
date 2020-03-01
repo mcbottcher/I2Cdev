@@ -420,6 +420,35 @@ bool I2Cdev::writeWords(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint16
     return TRUE;
 }
 
+void I2Cdev::write(uint8_t slaveAddress, uint8_t* txdataBuf, size_t number_of_bytes){
+		int fd = open(I2C_BUS_DEV_FILE_PATH, O_RDWR);
+    if (fd < 0) {
+        fprintf(stderr, "Failed to open device: %s\n", strerror(errno));
+        //return(FALSE);
+    }
+    if (ioctl(fd, I2C_SLAVE, slaveAddress) < 0) {
+        fprintf(stderr, "Failed to select device: %s\n", strerror(errno));
+        close(fd);
+        //return(FALSE);
+    }
+		write(fd, txdataBuf, number_of_bytes);
+}
+
+void I2Cdev::read(uint8_t slaveAddress, uint8_t* rxdataBuf, size_t number_of_bytes){
+		int fd = open(I2C_BUS_DEV_FILE_PATH, O_RDWR);
+    if (fd < 0) {
+        fprintf(stderr, "Failed to open device: %s\n", strerror(errno));
+        //return(FALSE);
+    }
+    if (ioctl(fd, I2C_SLAVE, slaveAddress) < 0) {
+        fprintf(stderr, "Failed to select device: %s\n", strerror(errno));
+        close(fd);
+        //return(FALSE);
+    }
+		read(fd, rxdataBuf, number_of_bytes);
+}
+
+
 /** Default timeout value for read operations.
  * Set this to 0 to disable timeout detection.
  */
