@@ -420,7 +420,7 @@ bool I2Cdev::writeWords(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint16
     return TRUE;
 }
 
-void I2Cdev::write(uint8_t slaveAddress, uint8_t* txdataBuf, size_t number_of_bytes){
+void I2Cdev::write_std(uint8_t slaveAddress, uint8_t* txdataBuf, size_t number_of_bytes){
 		int fd = open(I2C_BUS_DEV_FILE_PATH, O_RDWR);
     if (fd < 0) {
         fprintf(stderr, "Failed to open device: %s\n", strerror(errno));
@@ -434,7 +434,7 @@ void I2Cdev::write(uint8_t slaveAddress, uint8_t* txdataBuf, size_t number_of_by
 		write(fd, txdataBuf, number_of_bytes);
 }
 
-void I2Cdev::read(uint8_t slaveAddress, uint8_t* rxdataBuf, size_t number_of_bytes){
+void I2Cdev::read_std(uint8_t slaveAddress, uint8_t* rxdataBuf, size_t number_of_bytes){
 		int fd = open(I2C_BUS_DEV_FILE_PATH, O_RDWR);
     if (fd < 0) {
         fprintf(stderr, "Failed to open device: %s\n", strerror(errno));

@@ -51,6 +51,8 @@ THE SOFTWARE.
 
 #define I2C_BUS_DEV_FILE_PATH "/dev/i2c-1"
 
+#include <stdlib.h>
+
 class I2Cdev {
     public:
         I2Cdev();
@@ -73,8 +75,8 @@ class I2Cdev {
         static bool writeBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *data);
         static bool writeWords(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint16_t *data);
 
-	static void write(uint8_t slaveAddress, uint8_t* txdataBuf, size_t number_of_bytes);
-	static void read(uint8_t slaveAddress, uint8_t* rxdataBuf, size_t number_of_bytes);
+	static void write_std(uint8_t slaveAddress, uint8_t* txdataBuf, size_t number_of_bytes);
+	static void read_std(uint8_t slaveAddress, uint8_t* rxdataBuf, size_t number_of_bytes);
 
         static uint16_t readTimeout;	
 
