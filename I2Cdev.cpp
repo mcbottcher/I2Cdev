@@ -432,6 +432,7 @@ void I2Cdev::write_std(uint8_t slaveAddress, uint8_t* txdataBuf, size_t number_o
         //return(FALSE);
     }
 		write(fd, txdataBuf, number_of_bytes);
+	close(fd);
 }
 
 void I2Cdev::read_std(uint8_t slaveAddress, uint8_t* rxdataBuf, size_t number_of_bytes){
@@ -446,6 +447,7 @@ void I2Cdev::read_std(uint8_t slaveAddress, uint8_t* rxdataBuf, size_t number_of
         //return(FALSE);
     }
 		read(fd, rxdataBuf, number_of_bytes);
+	close(fd);
 }
 
 
